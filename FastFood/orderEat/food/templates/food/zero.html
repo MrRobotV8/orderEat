@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="icon" type="image/png" href="https://img.icons8.com/nolan/64/restaurant.png">
+        <title> Make your Choice </title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="{% static 'food/css/style.css' %}">
+    </head>
+
+    <body>
+    
+        <div class="jumbotron text-center">
+            <h1>Order<b>Eat</b></h1>
+            <h2>The perfect platform to manage food orders</h2>
+            <p>Programming for Internet of Things Project by Team ###</p>
+        </div>
+       
+          <div class="container-fluid">
+            <div class="row text-center">
+              <div class="col-sm">
+                <div class="card3" style="background-color: #32AFE2;">
+                    <div class="card-body">
+                      <h4 class="card-title">Restaurant Platform</h4>
+                      <p class="card-text">SignIn or SignUp</p>
+                      <a href="{% url 'rpanel:Signin' %}" class="btn btn-primary stretched-link">Enter</a>
+                    </div>
+                  </div>
+              </div>
+              <div class="col-sm">
+                <div class="card3" style="background-color: #1B92D1;">
+                    <div class="card-body">
+                      <h4 class="card-title">Customer Platform</h4>
+                      <p class="card-text">SignIn or SignUp</p>
+                      <a href="{% url 'food:signin' %}" class="btn btn-info stretched-link">Enter</a>
+              </div>
+          </div> 
+
+    </body>
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="{% static 'food/js/main.js' %}"></script>
+</html>
