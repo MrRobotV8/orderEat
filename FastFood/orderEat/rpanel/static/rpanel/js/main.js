@@ -1,8 +1,9 @@
 // PRELOADER
-
+/*
 $(window).load(function(){
   $('.preloader').delay(1).fadeOut("slow"); // set duration in brackets    
 });
+*/
 /* 
 	TYPER
 */

@@ -54,7 +54,62 @@ def postSignIn(request):
     a = a[0]
     a = a['localId']
     name = database.child('restaurants').child(a).child('details').child('name').get().val()
-    return render(request, 'rpanel/home.html', {"name":name})
+    timestamps = database.child("restaurants").child(a).child('menu').shallow().get().val()
+    name = database.child("restaurants").child(a).child('details').child('name').get().val()
+   
+    #Converting  the timestamps dictionary into a list   
+    lis_time=[]
+    for i in timestamps:
+
+        lis_time.append(i)
+    lis_time.sort(reverse=True) # sorted list by addition time
+
+    names=[]
+    descriptions=[]
+    prices=[]
+    sections=[]
+    dates=[]
+    
+   # This is too slow! change approach --> use json 
+
+    for i in lis_time:
+        nam = database.child('restaurants').child(a).child('menu').child(i).child('name').get().val()
+        des = database.child('restaurants').child(a).child('menu').child(i).child('description').get().val()
+        pri = database.child('restaurants').child(a).child('menu').child(i).child('price').get().val()
+        sec = database.child('restaurants').child(a).child('menu').child(i).child('section').get().val()
+        i = float(i)
+        dat = datetime.fromtimestamp(i).strftime('%H:%M %d-%m-%Y')
+        dates.append(dat)
+        names.append(nam)
+        descriptions.append(des)
+        prices.append(pri)
+        sections.append(sec)
+
+    
+    obj = database.child('restaurants').child(a).child('menu').get()
+    print('obj: ' + str(obj))
+    print('type: ' + str(type(obj)))
+    for o in obj.each(): 
+        print(o.val())
+ 
+    
+    comb_lis = zip(dates, names, descriptions, prices, sections)
+
+
+    ctx={
+        'name': name,
+        'comb_lis': comb_lis,
+        #'data': sorted(obj.val().items()),
+        'data': obj.val().items(),
+    }
+    print(ctx)
+    print(type(ctx))
+       
+        
+    
+
+    return render (request, 'rpanel/home.html', ctx)
+
 
 
 def logout(request):
